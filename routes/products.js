@@ -11,7 +11,7 @@ router.get('/', listProducts,(req, res, next)=> {
     let prods=req.afterFilter;
     let fixProducts=[];  
     prods.forEach(item => {
-        fixProducts.push((_.pick(item, ["id", "name","description","image"])))
+        fixProducts.push((_.pick(item, ["id", "name","description","image"]))) //To send only these parameter
     });
     console.log(fixProducts);
     res.json(fixProducts)
@@ -23,13 +23,13 @@ router.get('/', listProducts,(req, res, next)=> {
 router.get('/sort/:valSort', listProducts,(req, res, next)=> {
     let val = req.params.valSort
     let list=req.afterFilter;
-    let tempList = _.sortBy(list, val);
+    let tempList = _.sortBy(list, val);  //sorting by params
 
     let sortProducts=[];
     tempList.forEach(item => {
-        sortProducts.push((_.pick(item, ["id", "name","description","image"])))
+        sortProducts.push((_.pick(item, ["id", "name","description","image"])))   //To send only these parameter
     });
-    console.log(fixProducts);
+    console.log(sortProducts);
     res.json(sortProducts)
     }); 
 
