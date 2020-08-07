@@ -17,7 +17,7 @@ const listProducts = (req, res, next) => {
     let url = "https://msbit-exam-products-store.firebaseio.com/deliveryProducts/products.json";
     axios.get(url)
         .then(response => {
-            console.log(response.data);
+            //console.log(response.data);
             response.data.forEach(item => {
                 if (item.status != 0) {
                     if (item.type == 1) {
@@ -34,13 +34,14 @@ const listProducts = (req, res, next) => {
                     }
                 }
             });
+            req.afterFilter = products;
+            next();
 
         })
         .catch(error => {
             console.log(error);
         });
-    req.afterFilter = products;
-    next();
+ 
 }
 
 

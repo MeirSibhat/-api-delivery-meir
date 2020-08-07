@@ -1,6 +1,7 @@
 const express = require('express');
 const listProducts = require('../myServer');  // use for to get the list of product
 const router = express.Router();
+const axios = require('axios');
 const _ = require("lodash");  // for sort and picks the value ["id", "name","description","image"]
 
 
@@ -12,7 +13,7 @@ router.get('/', listProducts,(req, res, next)=> {
     prods.forEach(item => {
         fixProducts.push((_.pick(item, ["id", "name","description","image"])))
     });
-    
+    console.log(fixProducts);
     res.json(fixProducts)
     });
 
@@ -28,10 +29,12 @@ router.get('/sort/:valSort', listProducts,(req, res, next)=> {
     tempList.forEach(item => {
         sortProducts.push((_.pick(item, ["id", "name","description","image"])))
     });
-    
+    console.log(fixProducts);
     res.json(sortProducts)
     }); 
 
+
+    
 
 
 module.exports = router;
